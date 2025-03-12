@@ -9,7 +9,6 @@ CONTACT_LINKS: Dict[str, str] = {
 }
 
 def create_contact_keyboard() -> InlineKeyboardMarkup:
-    """Create an inline keyboard with contact buttons arranged in rows."""
     markup = InlineKeyboardMarkup(row_width=2)
     
     # Create buttons using dictionary items
@@ -25,15 +24,13 @@ def create_contact_keyboard() -> InlineKeyboardMarkup:
     return markup
 
 def register(bot: telebot.TeleBot) -> None:
-    """Register contact-related handlers for the bot."""
-    
     @bot.message_handler(commands=["contact"])
     def handle_contact_command(message: Message) -> None:
         """Send contact options to the user."""
         try:
             reply_text = (
                 f"📬 *Contact Options* 📬\n\n"
-                f"Hello {message.from_user.first_name}! "
+                f"Dear {message.from_user.first_name}! "
                 "You can reach me through these platforms:"
             )
             
