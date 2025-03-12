@@ -11,7 +11,6 @@ telebot.logger.setLevel(logging.INFO)
 API_TOKEN = os.environ.get("API_TOKEN")
 bot = telebot.TeleBot(API_TOKEN)
 
-# Add the core directory to Python path
 sys.path.append(os.path.dirname(__file__))
 
 handlers_dir = os.path.join(os.path.dirname(__file__), 'handlers')
@@ -26,3 +25,4 @@ for file in os.listdir(handlers_dir):
         if hasattr(module, 'register'):
             module.register(bot)
             
+bot.infinity_polling()
