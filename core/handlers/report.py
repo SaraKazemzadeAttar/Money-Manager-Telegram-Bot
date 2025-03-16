@@ -19,9 +19,9 @@ def register(bot):
             
             response = (
                 f"📊 Budget Overview\n\n"
-                f"• Total Budget: ${finance.budget:.2f}\n"
-                f"• Total Spent: ${finance.total_spent:.2f}\n"
-                f"• Remaining: ${remaining:.2f}\n\n"
+                f"• Total Budget: ${finance.budget:.3f}\n"
+                f"• Total Spent: ${finance.total_spent:.3f}\n"
+                f"• Remaining: ${remaining:.3f}\n\n"
                 f"Progress: [{ '⬛' * int(progress//10) }{ '⬜' * (10 - int(progress//10)) }] "
                 f"{progress:.1f}% used"
             )
@@ -45,10 +45,10 @@ def register(bot):
             # Changed line vvv - use expense object
             for idx, expense in enumerate(finance.expenses[-5:], 1):  # Show last 5
                 response.append(
-                    f"{idx}. {expense.category}: ${expense.amount:.2f}"
+                    f"{idx}. {expense.category}: ${expense.amount:.3f}"
                 )
                 
-            response.append(f"\n💵 Total Spent: ${finance.total_spent:.2f}")
+            response.append(f"\n💵 Total Spent: ${finance.total_spent:.3f}")
             
             bot.send_message(message.chat.id, "\n".join(response))
             
@@ -73,13 +73,13 @@ def register(bot):
             # Add expenses with numbering
             for idx, expense in enumerate(finance.expenses, 1):  # Changed here
                 response.append(
-                    f"{idx}. {expense.category}: ${expense.amount:.2f}"
+                    f"{idx}. {expense.category}: ${expense.amount:.3f}"
                 )
                 
             response.extend([
                 "-----------------------------",
-                f"💸 *Total Spent*: ${finance.total_spent:.2f}",
-                f"💵 *Remaining*: ${(finance.budget - finance.total_spent):.2f}"
+                f"💸 *Total Spent*: ${finance.total_spent:.3f}",
+                f"💵 *Remaining*: ${(finance.budget - finance.total_spent):.3f}"
             ])
             
 
