@@ -15,7 +15,7 @@ CONTACT_LINKS: Dict[str, str] = {
 BOT_DESCRIPTION = """
 💼 *Budget & Expense Manager Bot* 💰
 
-_Take control of your finances effortlessly! Here's what I can do:_
+_Take control of your finances effortlessly! Here's what I can do:
 
 📊 *Features*:
 - Set monthly budgets for different categories
