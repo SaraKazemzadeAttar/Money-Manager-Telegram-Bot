@@ -33,4 +33,4 @@ def register(bot):
 
     def set_user(message , fname):
         lname = message.text
-        bot.send_message(message.chat.id , f"Dear {fname} {lname} ,your registeration completed.\nThanks for using this bot.💚")
+        bot.send_message(message.chat.id , f"Dear {fname} {lname} ,your registeration completed.\nThanks for using this bot.🤝")

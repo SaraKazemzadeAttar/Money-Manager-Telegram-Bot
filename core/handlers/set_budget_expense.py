@@ -126,7 +126,6 @@ def register(bot) -> None:
                 # Handle custom category creation with special formatting
                 msg = bot.reply_to(
                     message,
-                    "🎨 *Create New Category*\n\n"
                     "What name would you like to use? (e.g., 'Pet Care' or 'Gaming')\n"
                     "Type your new category name:",
                     reply_markup=types.ReplyKeyboardRemove(),
