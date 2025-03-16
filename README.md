@@ -19,14 +19,12 @@ This project is available with this ID on telegram : @Save_Money_Minder_bot
 
 ### Planned Database Integration 🔜
 - **Persistent Storage**:
-  - SQLite database implementation
+  - SQLite database implementation (Working on it)
   - User data persistence between sessions
   - Historical data analysis
-  - Multi-user support with proper data isolation
 
 - **Enhanced Features**:
   - Monthly budget rollovers
-  - Expense categorization
   - Custom reporting periods
   - Data export functionality
   - Backup/restore capabilities
@@ -71,14 +69,10 @@ Start the bot in Telegram:
 
 Example workflow:
 1. `/register` - Create account
-2. `/set_budget 1500` - Set $1500 monthly budget
+2. `/set_budget` → 1500 - Set 1500 monthly budget
 3. `/add_expense` → "Food" → "45.50" - Record lunch expense
 4. `/view_budget` - Check remaining balance
-
-## 📦 Database Roadmap
-
-### Current Temporary Solution
-⚠️ **Note**: The current version uses in-memory storage (Python dictionaries). Data will reset on bot restart.
+5. `/view_chart`- Upload the chart report
 
 ## 🤝 Contributing
 
