@@ -10,6 +10,11 @@ def register(bot):
             user_id = message.from_user.id
             finance = storage.get_user_data(user_id)
             
+            # Update user's currency
+            finance = storage.get_user_data(user_id) 
+            finance.currency = currency_code
+            finance.currency_symbol = storage.CURRENCY_DATA[currency_code]['symbol']
+            
             if finance.budget <= 0:
                 bot.reply_to(message, "❌ No budget set! Use /set_budget first")
                 return
@@ -19,9 +24,9 @@ def register(bot):
             
             response = (
                 f"📊 Budget Overview\n\n"
-                f"• Total Budget: ${finance.budget:.3f}\n"
-                f"• Total Spent: ${finance.total_spent:.3f}\n"
-                f"• Remaining: ${remaining:.3f}\n\n"
+                f"• Total Budget: {finance.budget:.3f} {finance.currency_symbol} {finance.currency_symbol}\n"
+                f"• Total Spent: {finance.total_spent:.3f} {finance.currency_symbol}\n"
+                f"• Remaining: {remaining:.3f} {finance.currency_symbol}\n\n "
                 f"Progress: [{ '⬛' * int(progress//10) }{ '⬜' * (10 - int(progress//10)) }] "
                 f"{progress:.1f}% used"
             )
@@ -40,15 +45,19 @@ def register(bot):
             if not finance.expenses:
                 bot.reply_to(message, "📭 No expenses recorded yet!")
                 return
-                
+            # Update user's currency
+            finance = storage.get_user_data(user_id) 
+            finance.currency = currency_code
+            finance.currency_symbol = storage.CURRENCY_DATA[currency_code]['symbol']
+            
             response = ["📋 Recent Expenses:"]
             # Changed line vvv - use expense object
             for idx, expense in enumerate(finance.expenses[-5:], 1):  # Show last 5
                 response.append(
-                    f"{idx}. {expense.category}: ${expense.amount:.3f}"
+                    f"{idx}. {expense.category}: {expense.amount:.3f} {finance.currency_symbol}"
                 )
                 
-            response.append(f"\n💵 Total Spent: ${finance.total_spent:.3f}")
+            response.append(f"\n💵 Total Spent: {finance.total_spent:.3f} {finance.currency_symbol}")
             
             bot.send_message(message.chat.id, "\n".join(response))
             
@@ -70,16 +79,21 @@ def register(bot):
                 "-----------------------------"
             ]
             
+            # Update user's currency
+            finance = storage.get_user_data(user_id) 
+            finance.currency = currency_code
+            finance.currency_symbol = storage.CURRENCY_DATA[currency_code]['symbol']
+            
             # Add expenses with numbering
-            for idx, expense in enumerate(finance.expenses, 1):  # Changed here
+            for idx, expense in enumerate(finance.expenses, 1):
                 response.append(
-                    f"{idx}. {expense.category}: ${expense.amount:.3f}"
+                    f"{idx}. {expense.category}: {expense.amount:.3f}"
                 )
                 
             response.extend([
                 "-----------------------------",
-                f"💸 *Total Spent*: ${finance.total_spent:.3f}",
-                f"💵 *Remaining*: ${(finance.budget - finance.total_spent):.3f}"
+                f"💸 *Total Spent*: {finance.total_spent:.3f} {finance.currency_symbol}",
+                f"💵 *Remaining*: {(finance.budget - finance.total_spent):.3f {finance.currency_symbol} }"
             ])
             
 
